@@ -80,40 +80,13 @@ data "aws_iam_policy_document" "power-user-with-mfa" {
     effect = "Allow"
 
     actions = [
-      "iam:GetGroup",
-      "iam:GetGroupPolicy",
-      "iam:GetInstanceProfile",
-      "iam:GetLoginProfile",
-      "iam:GetOpenIDConnectProvider",
       "iam:GetPolicy",
-      "iam:GetPolicyVersion",
       "iam:GetRole",
-      "iam:GetRolePolicy",
-      "iam:GetServerCertificate",
+      "iam:GetAccount*",
       "iam:GetUser",
-      "iam:GetUserPolicy",
-      "iam:ListAttachedGroupPolicies",
-      "iam:ListAttachedRolePolicies",
-      "iam:ListAttachedUserPolicies",
-      "iam:ListEntitiesForPolicy",
-      "iam:ListGroupPolicies",
-      "iam:ListGroups",
-      "iam:ListGroupsForUser",
-      "iam:ListInstanceProfiles",
-      "iam:ListInstanceProfilesForRole",
-      "iam:ListOpenIDConnectProviders",
-      "iam:ListPolicies",
-      "iam:ListPoliciesGrantingServiceAccess",
-      "iam:ListPolicyVersions",
-      "iam:ListRolePolicies",
       "iam:ListRoles",
-      "iam:ListRoleTags",
-      "iam:ListServerCertificates",
-      "iam:ListServiceSpecificCredentials",
-      "iam:ListSigningCertificates",
-      "iam:ListUserPolicies",
       "iam:ListUsers",
-      "iam:ListUserTags",
+      "iam:ListAccount*",
       "organizations:DescribeOrganization",
     ]
 
@@ -149,40 +122,13 @@ data "aws_iam_policy_document" "power-user-no-mfa" {
     effect = "Allow"
 
     actions = [
-      "iam:GetGroup",
-      "iam:GetGroupPolicy",
-      "iam:GetInstanceProfile",
-      "iam:GetLoginProfile",
-      "iam:GetOpenIDConnectProvider",
       "iam:GetPolicy",
-      "iam:GetPolicyVersion",
       "iam:GetRole",
-      "iam:GetRolePolicy",
-      "iam:GetServerCertificate",
+      "iam:GetAccount*",
       "iam:GetUser",
-      "iam:GetUserPolicy",
-      "iam:ListAttachedGroupPolicies",
-      "iam:ListAttachedRolePolicies",
-      "iam:ListAttachedUserPolicies",
-      "iam:ListEntitiesForPolicy",
-      "iam:ListGroupPolicies",
-      "iam:ListGroups",
-      "iam:ListGroupsForUser",
-      "iam:ListInstanceProfiles",
-      "iam:ListInstanceProfilesForRole",
-      "iam:ListOpenIDConnectProviders",
-      "iam:ListPolicies",
-      "iam:ListPoliciesGrantingServiceAccess",
-      "iam:ListPolicyVersions",
-      "iam:ListRolePolicies",
       "iam:ListRoles",
-      "iam:ListRoleTags",
-      "iam:ListServerCertificates",
-      "iam:ListServiceSpecificCredentials",
-      "iam:ListSigningCertificates",
-      "iam:ListUserPolicies",
       "iam:ListUsers",
-      "iam:ListUserTags",
+      "iam:ListAccount*",
       "organizations:DescribeOrganization",
     ]
 
@@ -268,6 +214,9 @@ data "aws_iam_policy_document" "manage-own-credentials-with-mfa" {
       "iam:*AccessKey*",
       "iam:ResyncMFADevice",
       "iam:ChangePassword",
+      "iam:ListUserPolicies",
+      "iam:GetUser",
+      "iam:ListAttachedUserPolicies"
     ]
 
     resources = ["arn:${data.aws_partition.current.partition}:iam::${data.aws_caller_identity.current.account_id}:user/&{aws:username}"]
@@ -311,4 +260,3 @@ resource "aws_iam_policy" "manage-own-credentials-with-mfa" {
   name   = "manage-own-credentials-with-mfa"
   policy = data.aws_iam_policy_document.manage-own-credentials-with-mfa.json
 }
-
