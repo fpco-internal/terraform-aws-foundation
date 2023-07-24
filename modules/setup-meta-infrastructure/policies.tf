@@ -9,7 +9,6 @@ data "aws_iam_policy_document" "admin-with-mfa" {
 
     actions = [
       "*",
-      "aws-portal:*",
       "support:*",
     ]
 
@@ -35,7 +34,6 @@ data "aws_iam_policy_document" "admin-no-mfa" {
 
     actions = [
       "*",
-      "aws-portal:*",
       "support:*",
     ]
 
