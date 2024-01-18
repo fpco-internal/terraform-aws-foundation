@@ -58,7 +58,7 @@ data "aws_iam_policy_document" "assume-role" {
     principals {
       type = "AWS"
       identifiers = formatlist(
-        "arn:${data.aws_partition.current.partition}:iam::%s:role/zehut-server",
+        "arn:${data.aws_partition.current.partition}:iam::%s:role/zehut-cred",
         var.trust_account_ids,
       )
     }
